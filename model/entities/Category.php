@@ -15,7 +15,7 @@ final class Category extends Entity
     }
 
 
-    public function getId_category()
+    public function getId_category(): int
     {
         return $this->id_category;
     }
