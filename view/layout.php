@@ -42,6 +42,7 @@
                                     <?php
                                     }
                                     ?>
+                                    <a class="dropdown-item" href="index.php?ctrl=forum&action=listCategories">la liste des catégories</a>
                                     <a class="dropdown-item" href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Something else here</a>
