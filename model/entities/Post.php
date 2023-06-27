@@ -40,7 +40,7 @@ final class Post
 
     public function getDateCreation()
     {
-        return $this->dateCreation;
+        return $this->dateCreation->format('d-m-Y');;
     }
 
 
