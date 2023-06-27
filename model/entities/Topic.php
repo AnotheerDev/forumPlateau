@@ -7,106 +7,62 @@ use App\Entity;
 final class Topic extends Entity
 {
 
-        private $id;
+        private $id_topic;
         private $title;
-        private $user;
-        private $creationdate;
-        private $closed;
+        private $dateCreation;
+        private $locked;
 
         public function __construct($data)
         {
                 $this->hydrate($data);
         }
 
-        /**
-         * Get the value of id
-         */
+
         public function getId()
         {
-                return $this->id;
+                return $this->id_topic;
         }
 
-        /**
-         * Set the value of id
-         *
-         * @return  self
-         */
-        public function setId($id)
+
+        public function setId($id_topic)
         {
-                $this->id = $id;
-
-                return $this;
+                $this->id_topic = $id_topic;
         }
 
-        /**
-         * Get the value of title
-         */
+
         public function getTitle()
         {
                 return $this->title;
         }
 
-        /**
-         * Set the value of title
-         *
-         * @return  self
-         */
+
         public function setTitle($title)
         {
                 $this->title = $title;
-
-                return $this;
         }
 
-        /**
-         * Get the value of user
-         */
-        public function getUser()
-        {
-                return $this->user;
-        }
 
-        /**
-         * Set the value of user
-         *
-         * @return  self
-         */
-        public function setUser($user)
+        public function getdateCreation()
         {
-                $this->user = $user;
-
-                return $this;
-        }
-
-        public function getCreationdate()
-        {
-                $formattedDate = $this->creationdate->format("d/m/Y, H:i:s");
+                $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s");
                 return $formattedDate;
         }
 
-        public function setCreationdate($date)
+        public function setdateCreation($date)
         {
-                $this->creationdate = new \DateTime($date);
+                $this->dateCreation = new \DateTime($date);
                 return $this;
         }
 
-        /**
-         * Get the value of closed
-         */
-        public function getClosed()
+
+        public function getlocked()
         {
-                return $this->closed;
+                return $this->locked;
         }
 
-        /**
-         * Set the value of closed
-         *
-         * @return  self
-         */
-        public function setClosed($closed)
-        {
-                $this->closed = $closed;
 
-                return $this;
+        public function setlocked($locked)
+        {
+                $this->locked = $locked;
         }
 }
