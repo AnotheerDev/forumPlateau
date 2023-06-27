@@ -83,12 +83,12 @@ final class Member extends Entity
 
     public function getRegisterDate()
     {
-        return $this->registerDate;
+        return $this->registerDate->format('d-m-Y');
     }
 
 
-    public function setRegisterDate($registerDate)
-    {
-        $this->registerDate = $registerDate;
-    }
+    // public function setRegisterDate($registerDate)
+    // {
+    //     $this->registerDate = $registerDate;
+    // }
 }
