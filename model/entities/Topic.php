@@ -3,14 +3,15 @@
 namespace Model\Entities;
 
 use App\Entity;
+use DateTime;
 
 final class Topic extends Entity
 {
 
-        private $id_topic;
-        private $title;
-        private $dateCreation;
-        private $locked;
+        private int $id_topic;
+        private string $title;
+        private DateTime $dateCreation;
+        private int $locked;
 
         public function __construct($data)
         {
