@@ -88,70 +88,73 @@
                 <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             </header>
 
+
             <main id="forum">
                 <?= $page ?>
             </main>
+
+
         </div>
-        <footer>
+        <footer id="footer">
             <p>&copy; 2020 - Forum CDA - <a href="/home/forumRules.html">Règlement du forum</a> - <a href="">Mentions légales</a></p>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
-    </div>
 
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
-    </script>
-    <script>
-        $(document).ready(function() {
-            $(".message").each(function() {
-                if ($(this).text().length > 0) {
-                    $(this).slideDown(500, function() {
-                        $(this).delay(3000).slideUp(500)
-                    })
-                }
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(".message").each(function() {
+                    if ($(this).text().length > 0) {
+                        $(this).slideDown(500, function() {
+                            $(this).delay(3000).slideUp(500)
+                        })
+                    }
+                })
+                $(".delete-btn").on("click", function() {
+                    return confirm("Etes-vous sûr de vouloir supprimer?")
+                })
+                tinymce.init({
+                    selector: '.post',
+                    menubar: false,
+                    plugins: [
+                        'advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount'
+                    ],
+                    toolbar: 'undo redo | formatselect | ' +
+                        'bold italic backcolor | alignleft aligncenter ' +
+                        'alignright alignjustify | bullist numlist outdent indent | ' +
+                        'removeformat | help',
+                    content_css: '//www.tiny.cloud/css/codepen.min.css'
+                });
             })
-            $(".delete-btn").on("click", function() {
-                return confirm("Etes-vous sûr de vouloir supprimer?")
-            })
-            tinymce.init({
-                selector: '.post',
-                menubar: false,
-                plugins: [
-                    'advlist autolink lists link image charmap print preview anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount'
-                ],
-                toolbar: 'undo redo | formatselect | ' +
-                    'bold italic backcolor | alignleft aligncenter ' +
-                    'alignright alignjustify | bullist numlist outdent indent | ' +
-                    'removeformat | help',
-                content_css: '//www.tiny.cloud/css/codepen.min.css'
-            });
-        })
 
 
 
-        /*
-        $("#ajaxbtn").on("click", function(){
-            $.get(
-                "index.php?action=ajax",
-                {
-                    nb : $("#nbajax").text()
-                },
-                function(result){
-                    $("#nbajax").html(result)
-                }
-            )
-        })*/
-    </script>
+            /*
+            $("#ajaxbtn").on("click", function(){
+                $.get(
+                    "index.php?action=ajax",
+                    {
+                        nb : $("#nbajax").text()
+                    },
+                    function(result){
+                        $("#nbajax").html(result)
+                    }
+                )
+            })*/
+        </script>
 
 
-    <!-- script à ajouter en fin de body pour faire fonctionner bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <!-- script à ajouter en fin de body pour faire fonctionner bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
