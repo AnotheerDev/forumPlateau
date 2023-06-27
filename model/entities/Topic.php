@@ -12,6 +12,8 @@ final class Topic extends Entity
         private string $title;
         private DateTime $dateCreation;
         private int $locked;
+        private int $member_id;
+        private int $category_id;
 
         public function __construct($data)
         {
@@ -65,5 +67,29 @@ final class Topic extends Entity
         public function setlocked($locked)
         {
                 $this->locked = $locked;
+        }
+
+
+        public function getMember_id()
+        {
+                return $this->member_id;
+        }
+
+
+        public function setMember_id($member_id)
+        {
+                $this->member_id = $member_id;
+        }
+
+
+        public function getCategory_id()
+        {
+                return $this->category_id;
+        }
+
+
+        public function setCategory_id($category_id)
+        {
+                $this->category_id = $category_id;
         }
 }
