@@ -7,8 +7,8 @@ use App\DAO;
 
 class CategoryManager extends Manager
 {
-    private $className = "Model\Entities\Category";
-    private $tableName = "category";
+    protected $className = "Model\Entities\Category";
+    protected $tableName = "category";
 
     public function __construct()
     {
