@@ -47,7 +47,7 @@ class ForumController extends AbstractController implements ControllerInterface
         $topicManager = new TopicManager();
     
         return [
-            "view" => VIEW_DIR . "forum/category.php",
+            "view" => VIEW_DIR . "forum/listTopicsByCat.php",
             "data" => [
                 "category" => $categoryManager->findOneById($id),
                 "topic" => $topicManager->fetchTopicsByCat($id)
