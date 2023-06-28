@@ -6,23 +6,23 @@ use App\Entity;
 
 final class Post
 {
-    private int $id_post;
+    private int $id;
     private string $content;
     private $dateCreation;
-    private int $member_id;
-    private int $topic_id;
+    private int $member;
+    private int $topic;
 
 
 
-    public function getId_post()
+    public function getId()
     {
-        return $this->id_post;
+        return $this->id;
     }
 
 
-    public function setId_post($id_post)
+    public function setId($id)
     {
-        $this->id_post = $id_post;
+        $this->id = $id;
     }
 
 
@@ -51,26 +51,26 @@ final class Post
     }
 
 
-    public function getMember_id()
+    public function getMember()
     {
-        return $this->member_id;
+        return $this->member;
     }
 
 
-    public function setMember_id($member_id)
+    public function setMember($member)
     {
-        $this->member_id = $member_id;
+        $this->member = $member;
     }
 
 
-    public function getTopic_id()
+    public function getTopic()
     {
-        return $this->topic_id;
+        return $this->topic;
     }
 
 
-    public function setTopic_id($topic_id)
+    public function setTopic($topic)
     {
-        $this->topic_id = $topic_id;
+        $this->topic = $topic;
     }
 }

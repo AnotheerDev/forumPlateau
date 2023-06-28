@@ -7,7 +7,7 @@ use DateTime;
 
 final class Member extends Entity
 {
-    private int $id_member;
+    private int $id;
     private string $nickname;
     private string $email;
     private string $password;
@@ -21,15 +21,15 @@ final class Member extends Entity
     }
 
 
-    public function getId_member()
+    public function getId()
     {
-        return $this->id_member;
+        return $this->id;
     }
 
 
-    public function setId_member($id_member)
+    public function setId($id)
     {
-        $this->id_member = $id_member;
+        $this->id = $id;
     }
 
 

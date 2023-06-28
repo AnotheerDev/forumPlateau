@@ -8,12 +8,12 @@ use DateTime;
 final class Topic extends Entity
 {
 
-        private int $id_topic;
+        private int $id;
         private string $title;
         private DateTime $dateCreation;
         private int $locked;
-        private int $member_id;
-        private int $category_id;
+        private $member;
+        private $category;
 
         public function __construct($data)
         {
@@ -23,13 +23,13 @@ final class Topic extends Entity
 
         public function getId()
         {
-                return $this->id_topic;
+                return $this->id;
         }
 
 
-        public function setId($id_topic)
+        public function setId($id)
         {
-                $this->id_topic = $id_topic;
+                $this->id = $id;
         }
 
 
@@ -70,26 +70,26 @@ final class Topic extends Entity
         }
 
 
-        public function getMember_id()
+        public function getMember()
         {
-                return $this->member_id;
+                return $this->member;
         }
 
 
-        public function setMember_id($member_id)
+        public function setMember($member)
         {
-                $this->member_id = $member_id;
+                $this->member = $member;
         }
 
 
-        public function getCategory_id()
+        public function getCategory()
         {
-                return $this->category_id;
+                return $this->category;
         }
 
 
-        public function setCategory_id($category_id)
+        public function setCategory($category)
         {
-                $this->category_id = $category_id;
+                $this->category = $category;
         }
 }

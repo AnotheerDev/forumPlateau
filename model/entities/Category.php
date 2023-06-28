@@ -6,7 +6,7 @@ use App\Entity;
 
 final class Category extends Entity
 {
-    private int $id_category;
+    private int $id;
     private string $name;
 
     public function __construct($data)
@@ -15,15 +15,15 @@ final class Category extends Entity
     }
 
 
-    public function getId_category(): int
+    public function getId(): int
     {
-        return $this->id_category;
+        return $this->id;
     }
 
 
-    public function setId_category($id_category)
+    public function setId($id)
     {
-        $this->id_category = $id_category;
+        $this->id = $id;
     }
 
 
