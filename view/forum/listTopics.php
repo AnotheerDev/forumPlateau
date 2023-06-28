@@ -5,12 +5,15 @@ $topics = $result["data"]['topics'];
 // die;
 ?>
 
-<h1>liste topics</h1>
+<h2>liste topics</h2>
 
 <?php
 foreach ($topics as $topic) {
-
+    // var_dump($topic);
 ?>
-    <p><?= $topic->getTitle() ?></p>
+    <a href="index.php?ctrl=forum&action=listTopicsByCat&id=<?= $topic->getId() ?>">
+        <p><?= $topic->getTitle() . " " . $topic->getdateCreation() ?></p>
+    </a>
+
 <?php
 }

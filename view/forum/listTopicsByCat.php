@@ -4,20 +4,22 @@ $topics = $result["data"]['topics'];
 
 ?>
 
-<h1>liste topics de la catégorie <?= $category->getName() ?></h1>
+<h2>liste topics de la catégorie <?= $category->getName() ?></h2>
 
 <?php
 if ($topics) {
     foreach ($topics as $topic) {
 ?>
 
-        <p><?= $topic->getTitle() ?></p>
+        <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>">
+            <p><?= $topic->getTitle() ?></p>
+        </a>
         <p>Créé le : <?= $topic->getDateCreation() ?></p>
         <p>Créé par : <?= $topic->getMember()->getNickname() ?></p>
 
 <?php
     }
 } else {
-    echo "<h1>Pas de topic dans la catégorie</h1>";
+    echo "<h2>Pas de topic dans la catégorie</h2>";
 }
 ?>
