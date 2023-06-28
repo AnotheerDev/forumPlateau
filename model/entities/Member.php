@@ -12,7 +12,7 @@ final class Member extends Entity
     private string $email;
     private string $password;
     private string $role;
-    private DateTime $registerDate;
+    private string $registerDate;
 
 
     public function __construct($data)
@@ -83,12 +83,12 @@ final class Member extends Entity
 
     public function getRegisterDate()
     {
-        return $this->registerDate->format('d-m-Y');
+        return $this->registerDate;
     }
 
 
-    // public function setRegisterDate($registerDate)
-    // {
-    //     $this->registerDate = $registerDate;
-    // }
+    public function setRegisterDate($registerDate)
+    {
+        $this->registerDate = $registerDate;
+    }
 }
