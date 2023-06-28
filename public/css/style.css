@@ -10,10 +10,13 @@
 
 #footer {
     display: flex;
-    position:absolute;
-    bottom:0;  /* on le colle en bas */
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    right: 0;
     justify-content: center;
 }
+
 
 #forum {
     padding-left: 200px;
