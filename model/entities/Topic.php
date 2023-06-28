@@ -8,9 +8,9 @@ use DateTime;
 final class Topic extends Entity
 {
 
-        private int $id;
-        private string $title;
-        private DateTime $dateCreation;
+        private $id;
+        private $title;
+        private $dateCreation;
         private int $locked;
         private $member;
         private $category;
