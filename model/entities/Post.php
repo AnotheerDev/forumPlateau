@@ -9,8 +9,8 @@ final class Post
     private int $id;
     private string $content;
     private $dateCreation;
-    private int $member;
-    private int $topic;
+    private $member;
+    private $topic;
 
 
 
