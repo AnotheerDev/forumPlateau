@@ -1,6 +1,6 @@
 <?php
 $categories = $result["data"]['categories'];
-// var_dump($result);
+// var_dump($category);
 // die;
 ?>
 
@@ -9,7 +9,10 @@ $categories = $result["data"]['categories'];
 <?php
 foreach ($categories as $category) {
 ?>
-    <p><?= $category->getName() ?></p>
+    <a href="index.php?ctrl=forum&action=listTopicsByCat&id<?= $category->getId() ?>">
+        <p><?= $category->getName() ?></p>
+    </a>
+
 <?php
 }
 ?>
