@@ -4,7 +4,7 @@ namespace Model\Entities;
 
 use App\Entity;
 
-final class Post
+final class Post extends Entity
 {
     private int $id;
     private string $content;
@@ -12,7 +12,10 @@ final class Post
     private $member;
     private $topic;
 
-
+    public function __construct($data)
+    {
+        $this->hydrate($data);
+    }
 
     public function getId()
     {
@@ -40,14 +43,13 @@ final class Post
 
     public function getDateCreation()
     {
-        return $this->dateCreation->format('d-m-Y');;
+        return $this->dateCreation;
     }
 
 
     public function setDateCreation($dateCreation)
     {
         $this->dateCreation = $dateCreation;
-
     }
 
 
