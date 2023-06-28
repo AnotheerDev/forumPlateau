@@ -62,3 +62,13 @@ if ($action == "ajax") { //si l'action était ajax
     /*j'affiche le template principal (layout)*/
     include VIEW_DIR . "layout.php";
 }
+
+
+// <!-- CHECKPOINT EN CAS D'ERREUR 
+// CHECK URL  Controleur puis action / Methode 
+// CHECK la méthode 
+// CHECK la requete 
+
+// Si il y a une erreur faire des checks par étape pour trouver l’erreur -->
+
+
