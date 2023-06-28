@@ -14,4 +14,18 @@ class PostManager extends Manager
     {
         parent::connect();
     }
+
+
+    public function displayPostsByTopic($id)
+    {
+        $sql = "SELECT *
+                FROM " . $this->tableName . "
+                WHERE topic_id = :id
+                ORDER BY dateCreation";
+
+        return $this->getMultipleResults(
+            DAO::select($sql, ['id' => $id], true),
+            $this->className
+        );
+    }
 }
