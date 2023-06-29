@@ -79,19 +79,19 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
-    public function addTopic($id){
-            
+    public function addTopic($id)
+    {
         $topicManager = new TopicManager();
         $postManager = new PostManager();
 
-        if(isset($_POST['submit'])){
+        if (isset($_POST['submit'])) {
 
-            if(isset($_POST['post']) && (!empty($_POST['post']))){
-                $post = filter_input(INPUT_POST,"post",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $title = filter_input(INPUT_POST,"title",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                
-                
-                if($post && $title) {
+            if (isset($_POST['post']) && (!empty($_POST['post']))) {
+                $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+
+                if ($post && $title) {
                     $newTopicId = $topicManager->add([
                         "title" => $title,
                         "dateCreation" => date('y-m-d h:i:s'),
@@ -107,10 +107,37 @@ class ForumController extends AbstractController implements ControllerInterface
                         "member_id" => 3
                     ]);
                 }
-                
+
                 header("Location:index.php?ctrl=forum&action=listTopicsByCat&id=$id");
             }
         }
     }
-}
 
+
+    public function addPost($id)
+    {
+        $topicManager = new TopicManager();
+        $postManager = new PostManager();
+
+        if (isset($_POST['submit'])) {
+
+            if (isset($_POST['post']) && (!empty($_POST['post']))) {
+                $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                if ($post) {
+
+                    // var_dump($post);
+                    // die;
+                    $postManager->add([
+                        "content" => $post,
+                        "dateCreation" => date('y-m-d h:i:s'),
+                        "topic_id" => $id,
+                        "member_id" => 1,
+                    ]);
+                }
+
+                header("Location:index.php?ctrl=forum&action=listPostsByTopic&id=$id");
+            }
+        }
+    }
+}
