@@ -22,3 +22,9 @@ if ($posts) {
     echo "<p>Pas de post dans ce topic</p>";
 }
 ?>
+
+<form action="index.php?ctrl=forum&action=addPost&id=<?= $topic->getId() ?>" method='POST'>
+    <label for="post">Message :</label><br>
+    <textarea name="post" rows="4" placeholder="Entrez votre message" required></textarea><br>
+    <input type="submit" name="submit" value="submit">
+</form>
