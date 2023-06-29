@@ -15,9 +15,8 @@ class ForumController extends AbstractController implements ControllerInterface
 
     public function index()
     {
-
-
         $topicManager = new TopicManager();
+
 
         return [
             "view" => VIEW_DIR . "forum/listTopics.php",
@@ -31,6 +30,7 @@ class ForumController extends AbstractController implements ControllerInterface
     public function listCategories()
     {
         $categoryManager = new CategoryManager();
+
 
         return [
             "view" => VIEW_DIR . "forum/listCategories.php",
@@ -77,4 +77,40 @@ class ForumController extends AbstractController implements ControllerInterface
             ]
         ];
     }
+
+
+    public function addTopic($id){
+            
+        $topicManager = new TopicManager();
+        $postManager = new PostManager();
+
+        if(isset($_POST['submit'])){
+
+            if(isset($_POST['post']) && (!empty($_POST['post']))){
+                $post = filter_input(INPUT_POST,"post",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $title = filter_input(INPUT_POST,"title",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                
+                
+                if($post && $title) {
+                    $newTopicId = $topicManager->add([
+                        "title" => $title,
+                        "dateCreation" => date('y-m-d h:i:s'),
+                        "member_id" => 3,
+                        "locked" => "0",
+                        "category_id" => $id,
+                    ]);
+
+                    $postManager->add([
+                        "content" => $post,
+                        "dateCreation" => date('y-m-d h:i:s'),
+                        "topic_id" => $newTopicId,
+                        "member_id" => 3
+                    ]);
+                }
+                
+                header("Location:index.php?ctrl=forum&action=listTopicsByCat&id=$id");
+            }
+        }
+    }
 }
+
