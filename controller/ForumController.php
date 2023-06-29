@@ -41,21 +41,6 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
-    // public function listTopicsByCat($id)
-    // {
-    //     $categoryManager = new CategoryManager();
-    //     $topicManager = new TopicManager();
-
-    //     return [
-    //         "view" => VIEW_DIR . "forum/listTopicsByCat.php",
-    //         "data" => [
-    //             "category" => $categoryManager->findOneById($id),
-    //             "topic" => $topicManager->fetchTopicsByCat($id)
-    //         ]
-    //     ];
-    // }
-
-
     public function listTopicsByCat($id)
     {
         $categoryManager = new CategoryManager();
