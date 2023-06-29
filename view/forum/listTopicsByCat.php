@@ -22,4 +22,18 @@ if ($topics) {
 } else {
     echo "<h2>Pas de topic dans la catégorie</h2>";
 }
+
 ?>
+
+
+<h2>Ajouter un nouveau topic</h2>
+
+<form action="index.php?ctrl=forum&action=addTopic&id=<?= $category->getId() ?>" method="POST">
+    <label for="title">Titre du topic :</label>
+    <input type="text" name="title" id="title" placeholder="Entrez le titre du topic" required><br>
+
+    <label for="post">Message :</label>
+    <textarea name="post" id="post" rows="4" placeholder="Entrez votre message" required></textarea><br>
+
+    <input type="submit" name="submit" value="Ajouter">
+</form>
