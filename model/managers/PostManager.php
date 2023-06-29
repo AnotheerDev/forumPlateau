@@ -28,4 +28,23 @@ class PostManager extends Manager
             $this->className
         );
     }
+
+
+    public function deletePost($id)
+    {
+        $sql = "DELETE FROM " . $this->tableName . "
+                WHERE id_" . $this->tableName . " = :id";
+
+        DAO::delete($sql, ['id' => $id]);
+    }
+
+
+    public function updatePost($content, $id)
+    {
+        $sql = "UPDATE ".$this->tableName."
+                SET content = :content 
+                WHERE id_".$this->tableName." = :id";
+        
+        DAO::update($sql, ['content' => $content, 'id' => $id]);
+    }
 }
