@@ -11,7 +11,7 @@ final class Topic extends Entity
         private $id;
         private $title;
         private $dateCreation;
-        private int $locked;
+        private $locked;
         private $member;
         private $category;
 

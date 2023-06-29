@@ -7,12 +7,12 @@ use DateTime;
 
 final class Member extends Entity
 {
-    private int $id;
-    private string $nickname;
-    private string $email;
-    private string $password;
-    private string $role;
-    private string $registerDate;
+    private $id;
+    private $nickname;
+    private $email;
+    private $password;
+    private $role;
+    private $registerDate;
 
 
     public function __construct($data)
