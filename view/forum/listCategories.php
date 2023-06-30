@@ -4,32 +4,6 @@ $categories = $result["data"]['categories'];
 // die;
 ?>
 
-<style>
-    .category-list {
-        list-style: none;
-        padding: 0;
-    }
-
-    .category-list-item {
-        margin-bottom: 10px;
-        width: 150px;
-    }
-
-    .category-list-item a {
-        display: block;
-        background-color: #272729;
-        border: 1px solid grey;
-        border-radius: 4px;
-        padding: 10px;
-        text-decoration: none;
-        color: white;
-        transition: background-color 0.3s;
-    }
-
-    .category-list-item a:hover {
-        background-color: #535e72;
-    }
-</style>
 
 <h2>Liste des catégories :</h2>
 
