@@ -39,12 +39,12 @@ class PostManager extends Manager
     }
 
 
-    public function updatePost($content, $id)
-    {
-        $sql = "UPDATE ".$this->tableName."
-                SET content = :content 
-                WHERE id_".$this->tableName." = :id";
+    // public function updatePost($content, $id)
+    // {
+    //     $sql = "UPDATE ".$this->tableName."
+    //             SET content = :content 
+    //             WHERE id_".$this->tableName." = :id";
         
-        DAO::update($sql, ['content' => $content, 'id' => $id]);
-    }
+    //     DAO::update($sql, ['content' => $content, 'id' => $id]);
+    // }
 }
