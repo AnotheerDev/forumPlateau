@@ -16,9 +16,8 @@ $posts = $result["data"]["posts"];
                     <p>Créé par : <?= $post->getMember()->getId() ?> - <?= $post->getMember()->getNickname() ?></p>
                     <p>Créé le <?= $post->getDateCreation() ?></p>
                     <p><?= $post->getContent() ?></p>
-                    <form action="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">
-                        <button class="delete-button" type="submit">Supprimer</button>
-                    </form>
+                    <a href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>" class="delete-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
+
                 </div>
         <?php
             }
