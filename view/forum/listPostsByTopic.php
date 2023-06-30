@@ -17,7 +17,6 @@ $posts = $result["data"]["posts"];
                     <p>Créé le <?= $post->getDateCreation() ?></p>
                     <p><?= $post->getContent() ?></p>
                     <a href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>" class="delete-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
-
                 </div>
         <?php
             }
@@ -25,7 +24,6 @@ $posts = $result["data"]["posts"];
             echo "<p>Pas de post dans ce topic</p>";
         }
         ?>
-
         <form action="index.php?ctrl=forum&action=addPost&id=<?= $topic->getId() ?>" method='POST' class="post-box">
             <label for="post">Message :</label><br>
             <textarea name="post" rows="4" placeholder="Entrez votre message" required></textarea><br>
