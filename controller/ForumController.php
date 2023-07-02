@@ -12,11 +12,12 @@ use Model\Managers\CategoryManager;
 
 class ForumController extends AbstractController implements ControllerInterface
 {
+    // La classe ForumController étend la classe AbstractController et implémente l'interface ControllerInterface.
 
+    // La méthode index() récupère tous les sujets de discussion à afficher dans la vue listTopics.php.
     public function index()
     {
         $topicManager = new TopicManager();
-
 
         return [
             "view" => VIEW_DIR . "forum/listTopics.php",
@@ -27,10 +28,10 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
+    // La méthode listCategories() récupère toutes les catégories de discussion à afficher dans la vue listCategories.php.
     public function listCategories()
     {
         $categoryManager = new CategoryManager();
-
 
         return [
             "view" => VIEW_DIR . "forum/listCategories.php",
@@ -41,6 +42,7 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
+    // La méthode listTopicsByCat($id) récupère les sujets de discussion d'une catégorie spécifique à afficher dans la vue listTopicsByCat.php.
     public function listTopicsByCat($id)
     {
         $categoryManager = new CategoryManager();
@@ -48,7 +50,6 @@ class ForumController extends AbstractController implements ControllerInterface
 
         $category = $categoryManager->findOneById($id); // Récupérer la catégorie par ID
         $topics = $topicManager->fetchTopicsByCat($id); // Récupérer les sujets par ID de catégorie
-
 
         return [
             "view" => VIEW_DIR . "forum/listTopicsByCat.php",
@@ -60,14 +61,15 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
+    // La méthode listPostsByTopic($id) récupère les messages d'un sujet de discussion spécifique à afficher dans la vue listPostsByTopic.php.
     public function listPostsByTopic($id)
     {
         $postManager = new postManager();
         $topicManager = new TopicManager();
 
+        // Récupérer les messages d'un sujet de discussion spécifique
         $posts = $postManager->displayPostsByTopic($id);
         $topic = $topicManager->findOneById($id);
-
 
         return [
             "view" => VIEW_DIR . "forum/listPostsByTopic.php",
@@ -79,6 +81,7 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
+    // La méthode addTopic($id) ajoute un nouveau sujet de discussion dans une catégorie spécifique.
     public function addTopic($id)
     {
         $topicManager = new TopicManager();
@@ -90,8 +93,8 @@ class ForumController extends AbstractController implements ControllerInterface
                 $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-
                 if ($post && $title) {
+                    // Ajouter un nouveau sujet de discussion dans une catégorie spécifique
                     $newTopicId = $topicManager->add([
                         "title" => $title,
                         "dateCreation" => date('y-m-d h:i:s'),
@@ -100,6 +103,7 @@ class ForumController extends AbstractController implements ControllerInterface
                         "category_id" => $id,
                     ]);
 
+                    // Ajouter le premier message du sujet
                     $postManager->add([
                         "content" => $post,
                         "dateCreation" => date('y-m-d h:i:s'),
@@ -114,6 +118,7 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
+    // La méthode addPost($id) ajoute un nouveau message dans un sujet de discussion spécifique.
     public function addPost($id)
     {
         $topicManager = new TopicManager();
@@ -125,9 +130,7 @@ class ForumController extends AbstractController implements ControllerInterface
                 $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
                 if ($post) {
-
-                    // var_dump($post);
-                    // die;
+                    // Ajouter un nouveau message dans un sujet de discussion spécifique
                     $postManager->add([
                         "content" => $post,
                         "dateCreation" => date('y-m-d h:i:s'),
@@ -142,19 +145,21 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
 
-
+    // La méthode deletePost($id) supprime un message spécifique d'un sujet de discussion.
     public function deletePost($id)
     {
         $postManager = new PostManager();
+
         $post = $postManager->findOneById($id);
         $topicId = $post->getTopic()->getId();
-
+        // Supprimer un message spécifique d'un sujet de discussion
         $postManager->deletePost($id);
 
         $this->redirectTo("forum", "listPostsByTopic", $topicId);
     }
 
 
+    // La méthode updatePost($id) met à jour le contenu d'un message spécifique dans un sujet de discussion.
     public function updatePost($id)
     {
         $postManager = new PostManager;
@@ -162,17 +167,12 @@ class ForumController extends AbstractController implements ControllerInterface
         $content = $postManager->findOneById($id)->getContent();
 
         if (isset($_POST['submit'])) {
-
             $content = filter_input(INPUT_POST, "contentPost", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
+            // Mettre à jour le contenu d'un message spécifique dans un sujet de discussion
             $postManager->updatePost($content, intval($id));
-
-
-
             $topic_id = $postManager->findOneByid($id)->getTopic()->getId();
             $this->redirectTo("forum", "listPostsByTopic", $topic_id);
         }
-
 
         return [
             "view" => VIEW_DIR . "forum/updatePost.php",
