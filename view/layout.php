@@ -68,13 +68,13 @@
 
                                     if (App\Session::getUser()) {
                                     ?>
-                                        <a class="dropdown-item" href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser() ?></a>
-                                        <a class="dropdown-item" href="/security/logout.html">Déconnexion</a>
+                                        <a class="dropdown-item" href="index.php?ctrl=security&action=loginviewProfile&id"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getNickname() ?></a>
+                                        <a class="dropdown-item" href="index.php?ctrl=security&action=logout">Déconnexion</a>
                                     <?php
                                     } else {
                                     ?>
-                                        <a class="dropdown-item" href="./view/security/login.php">Connexion</a>
-                                        <a class="dropdown-item" href="./view/security/register.php">Inscription</a>
+                                        <a class="dropdown-item" href="index.php?ctrl=security&action=login">Connexion</a>
+                                        <a class="dropdown-item" href="index.php?ctrl=security&action=register">Inscription</a>
                                     <?php
                                     }
                                     ?>
