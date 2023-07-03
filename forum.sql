@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_dwwm3.category : ~4 rows (environ)
+-- Listage des données de la table forum_dwwm3.category : ~5 rows (environ)
 INSERT INTO `category` (`id_category`, `name`) VALUES
 	(1, 'Informatique'),
 	(2, 'Jeux Vidéos'),
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_dwwm3.member : ~0 rows (environ)
+-- Listage des données de la table forum_dwwm3.member : ~3 rows (environ)
 INSERT INTO `member` (`id_member`, `nickname`, `email`, `password`, `role`, `registerDate`) VALUES
 	(1, 'blabla1', 'blabla1@mail.com', 'Blabla123', 'Membre', '2023-06-22 15:29:25'),
 	(2, 'bloblo', 'bloblo@gmail.com', 'Bloblo123', 'Membre', '2023-06-28 11:42:44'),
@@ -64,15 +64,17 @@ CREATE TABLE IF NOT EXISTS `post` (
   KEY `FK_post_topic` (`topic_id`),
   CONSTRAINT `FK_post_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id_member`),
   CONSTRAINT `FK_post_topic` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_dwwm3.post : ~0 rows (environ)
+-- Listage des données de la table forum_dwwm3.post : ~7 rows (environ)
 INSERT INTO `post` (`id_post`, `content`, `dateCreation`, `member_id`, `topic_id`) VALUES
 	(1, 'Lel elel blableoedje iedje iqhjdq deqidisjd eq oqdip  eçf^fief<i ief,i snfie  oefinf ', '2023-06-27 10:00:22', 1, 1),
 	(2, 'Wahaahhh la rando était trop cool merci pour l\'info', '2023-06-28 11:41:52', 1, 3),
-	(3, 'Ouais j\'avoue c\'était ouf', '2023-06-28 11:42:16', 1, 3),
-	(4, 'Une tuerie merci !', '2023-06-28 11:43:49', 3, 3),
-	(5, 'Trop vrai !', '2023-06-28 11:44:02', 2, 3);
+	(5, 'Trop vrai !', '2023-06-28 11:44:02', 2, 3),
+	(6, 'cette nouvelle carte m&egrave;re c&#039;est le feu 123dzads', '2023-06-29 09:53:28', 3, 4),
+	(7, 'C&#039;est vraiment de la merde mais enfait &ccedil;a va', '2023-06-29 12:23:30', 3, 5),
+	(24, 'Ce jeu est magnifique waaahou', '2023-06-30 11:52:25', 3, 6),
+	(25, 'La dinguerie niveau dopage ils sont fous ', '2023-06-30 11:52:52', 3, 7);
 
 -- Listage de la structure de table forum_dwwm3. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -87,13 +89,17 @@ CREATE TABLE IF NOT EXISTS `topic` (
   KEY `FK_topic_category` (`category_id`),
   CONSTRAINT `FK_topic_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`) ON DELETE CASCADE,
   CONSTRAINT `FK_topic_member` FOREIGN KEY (`member_id`) REFERENCES `member` (`id_member`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_dwwm3.topic : ~0 rows (environ)
+-- Listage des données de la table forum_dwwm3.topic : ~7 rows (environ)
 INSERT INTO `topic` (`id_topic`, `title`, `dateCreation`, `locked`, `member_id`, `category_id`) VALUES
 	(1, 'Cette carte graphique est ENORME', '2023-06-22 15:37:34', 0, 1, 1),
 	(2, 'Amazing restaurant un Paris', '2023-06-28 10:06:47', 0, 1, 3),
-	(3, 'Cette rando dans les Vosges est superbe', '2023-06-28 10:07:11', 0, 1, 4);
+	(3, 'Cette rando dans les Vosges est superbe', '2023-06-28 10:07:11', 0, 1, 4),
+	(4, 'Carte mère', '2023-06-29 09:53:28', 0, 3, 1),
+	(5, 'McDonald wtf ??', '2023-06-29 12:23:30', 0, 3, 3),
+	(6, 'TOTK', '2023-06-30 11:52:25', 0, 3, 2),
+	(7, 'Tour de france', '2023-06-30 11:52:52', 0, 3, 5);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
