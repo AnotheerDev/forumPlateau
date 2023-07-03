@@ -5,7 +5,7 @@ namespace Model\Entities;
 use App\Entity;
 use DateTime;
 
-final class Member extends Entity
+final class User extends Entity
 {
     private $id;
     private $nickname;

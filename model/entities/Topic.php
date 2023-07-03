@@ -12,7 +12,7 @@ final class Topic extends Entity
         private $title;
         private $dateCreation;
         private $locked;
-        private $member;
+        private $user;
         private $category;
 
         public function __construct($data)
@@ -70,15 +70,15 @@ final class Topic extends Entity
         }
 
 
-        public function getMember()
+        public function getUser()
         {
-                return $this->member;
+                return $this->user;
         }
 
 
-        public function setMember($member)
+        public function setUser($user)
         {
-                $this->member = $member;
+                $this->user = $user;
         }
 
 

@@ -18,7 +18,7 @@ $topics = $result["data"]['topics'];
                         <div class="topic-box-title"><?= $topic->getTitle() ?></div>
                         <div class="topic-box-info">
                             <p>Créé le : <?= $topic->getDateCreation() ?></p>
-                            <p>Créé par : <?= $topic->getMember()->getNickname() ?></p>
+                            <p>Créé par : <?= $topic->getUser()->getNickname() ?></p>
                         </div>
                     </div>
                 </a>

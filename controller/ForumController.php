@@ -7,7 +7,7 @@ use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
-use Model\Managers\MemberManager;
+use Model\Managers\UserManager;
 use Model\Managers\CategoryManager;
 
 class ForumController extends AbstractController implements ControllerInterface
@@ -98,7 +98,7 @@ class ForumController extends AbstractController implements ControllerInterface
                     $newTopicId = $topicManager->add([
                         "title" => $title,
                         "dateCreation" => date('y-m-d h:i:s'),
-                        "member_id" => 3,
+                        "user_id" => 3,
                         "locked" => "0",
                         "category_id" => $id,
                     ]);
@@ -108,7 +108,7 @@ class ForumController extends AbstractController implements ControllerInterface
                         "content" => $post,
                         "dateCreation" => date('y-m-d h:i:s'),
                         "topic_id" => $newTopicId,
-                        "member_id" => 3
+                        "user_id" => 3
                     ]);
                 }
 
@@ -135,7 +135,7 @@ class ForumController extends AbstractController implements ControllerInterface
                         "content" => $post,
                         "dateCreation" => date('y-m-d h:i:s'),
                         "topic_id" => $id,
-                        "member_id" => 1,
+                        "user_id" => 1,
                     ]);
                 }
 

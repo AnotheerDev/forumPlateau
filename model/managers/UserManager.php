@@ -5,21 +5,21 @@ namespace Model\Managers;
 use App\Manager;
 use App\DAO;
 
-class MemberManager extends Manager
+class UserManager extends Manager
 {
-    protected $className = "Model\Entities\Member";
-    protected $tableName = "member";
+    protected $className = "Model\Entities\User";
+    protected $tableName = "user";
 
     public function __construct()
     {
         parent::connect();
     }
 
-    public function getMemberById($id)
+    public function getUserById($id)
     {
-        $sql = "SELECT id_member
+        $sql = "SELECT id_user
                 FROM " . $this->tableName . "
-                WHERE id_member = :id";
+                WHERE id_user = :id";
 
         return $this->getOneOrNullResult(
             DAO::select($sql, ['id' => $id]),

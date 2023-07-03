@@ -20,7 +20,7 @@ class TopicManager extends Manager
     public function fetchTopicsByCat($id)
     {
 
-        $sql = "SELECT id_topic, title, t.dateCreation, locked, t.member_id, category_id
+        $sql = "SELECT id_topic, title, t.dateCreation, locked, t.user_id, category_id
                     FROM " . $this->tableName . " t
                     LEFT JOIN post p ON p.topic_id = t.id_" . $this->tableName . "
                     WHERE t.category_id = :id

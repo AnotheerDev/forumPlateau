@@ -13,7 +13,7 @@ $posts = $result["data"]["posts"];
                 // var_dump($post);
         ?>
                 <div class="post-box">
-                    <p>Créé par : <?= $post->getMember()->getId() ?> - <?= $post->getMember()->getNickname() ?></p>
+                    <p>Créé par : <?= $post->getUser()->getId() ?> - <?= $post->getUser()->getNickname() ?></p>
                     <p>Créé le <?= $post->getDateCreation() ?></p>
                     <p><?= $post->getContent() ?></p>
                     <a href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>" class="delete-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>

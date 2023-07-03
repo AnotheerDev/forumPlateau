@@ -9,7 +9,7 @@ final class Post extends Entity
     private int $id;
     private string $content;
     private $dateCreation;
-    private $member;
+    private $user;
     private $topic;
 
     public function __construct($data)
@@ -53,15 +53,15 @@ final class Post extends Entity
     }
 
 
-    public function getMember()
+    public function getUser()
     {
-        return $this->member;
+        return $this->user;
     }
 
 
-    public function setMember($member)
+    public function setUser($user)
     {
-        $this->member = $member;
+        $this->user = $user;
     }
 
 
