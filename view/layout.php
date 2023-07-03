@@ -74,7 +74,7 @@
                                     } else {
                                     ?>
                                         <a class="dropdown-item" href="./view/security/login.php">Connexion</a>
-                                        <a class="dropdown-item" href="/security/register.html">Inscription</a>
+                                        <a class="dropdown-item" href="./view/security/register.php">Inscription</a>
                                     <?php
                                     }
                                     ?>
