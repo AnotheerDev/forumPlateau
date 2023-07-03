@@ -58,29 +58,32 @@
 
                         <!-- Navbar droite -->
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Se connecter
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="dropdown-divider"></div>
-                                    <?php
-
-                                    if (App\Session::getUser()) {
-                                    ?>
-                                        <a class="dropdown-item" href="index.php?ctrl=security&action=loginviewProfile&id"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getNickname() ?></a>
+                            <?php if (App\Session::getUser()) { ?>
+                                <!-- Partie pour les utilisateurs connectés -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <?php echo App\Session::getUser()->getNickname(); ?>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>">
+                                            <span class="fas fa-user"></span>&nbsp;Profil
+                                        </a>
                                         <a class="dropdown-item" href="index.php?ctrl=security&action=logout">Déconnexion</a>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <a class="dropdown-item" href="index.php?ctrl=security&action=login">Connexion</a>
-                                        <a class="dropdown-item" href="index.php?ctrl=security&action=register">Inscription</a>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
-                            </li>
+                                    </div>
+                                </li>
+                            <?php } else { ?>
+                                <!-- Partie pour les utilisateurs non connectés -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.php?ctrl=security&action=login">Connexion</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.php?ctrl=security&action=register">Inscription</a>
+                                </li>
+                            <?php } ?>
                         </ul>
+
+
                     </div>
                 </nav>
                 <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
