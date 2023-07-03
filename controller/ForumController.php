@@ -86,19 +86,21 @@ class ForumController extends AbstractController implements ControllerInterface
     {
         $topicManager = new TopicManager();
         $postManager = new PostManager();
+        // $user_id= Session::getUser();
 
         if (isset($_POST['submit'])) {
 
             if (isset($_POST['post']) && (!empty($_POST['post']))) {
                 $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $user_id = $_SESSION['user']->getId();
 
-                if ($post && $title) {
+                if ($post && $title && $user_id) {
                     // Ajouter un nouveau sujet de discussion dans une catégorie spécifique
                     $newTopicId = $topicManager->add([
                         "title" => $title,
                         "dateCreation" => date('y-m-d h:i:s'),
-                        "user_id" => 3,
+                        "user_id" => $user_id,
                         "locked" => "0",
                         "category_id" => $id,
                     ]);
@@ -108,7 +110,7 @@ class ForumController extends AbstractController implements ControllerInterface
                         "content" => $post,
                         "dateCreation" => date('y-m-d h:i:s'),
                         "topic_id" => $newTopicId,
-                        "user_id" => 3
+                        "user_id" => $user_id
                     ]);
                 }
 
@@ -123,19 +125,22 @@ class ForumController extends AbstractController implements ControllerInterface
     {
         $topicManager = new TopicManager();
         $postManager = new PostManager();
+        // $user_id= Session::getUser();
 
-        if (isset($_POST['submit'])) {
+
+        if (isset($_POST['submit']) && isset($_SESSION['user'])) {
 
             if (isset($_POST['post']) && (!empty($_POST['post']))) {
                 $post = filter_input(INPUT_POST, "post", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $user_id = $_SESSION['user']->getId();
 
-                if ($post) {
+                if ($post && $user_id) {
                     // Ajouter un nouveau message dans un sujet de discussion spécifique
                     $postManager->add([
                         "content" => $post,
                         "dateCreation" => date('y-m-d h:i:s'),
                         "topic_id" => $id,
-                        "user_id" => 1,
+                        "user_id" => $user_id,
                     ]);
                 }
 
