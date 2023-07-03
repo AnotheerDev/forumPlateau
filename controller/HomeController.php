@@ -8,6 +8,8 @@ use App\ControllerInterface;
 use Model\Managers\UserManager;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
+use Model\Managers\CategoryManager;
+
 
 class HomeController extends AbstractController implements ControllerInterface
 {
@@ -28,7 +30,7 @@ class HomeController extends AbstractController implements ControllerInterface
         $this->restrictTo("ROLE_USER");
 
         $manager = new UserManager();
-        $users = $manager->findAll(['registerdate', 'DESC']);
+        $users = $manager->findAll(['registerDate', 'DESC']);
 
         return [
             "view" => VIEW_DIR . "security/users.php",
