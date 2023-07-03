@@ -19,7 +19,10 @@ final class User extends Entity
 
     public function __construct($data)
     {
+        // var_dump($data);
         $this->hydrate($data);
+        // var_dump($this);
+        // die();
     }
 
 
