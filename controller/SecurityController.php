@@ -22,29 +22,25 @@ class HomeController extends AbstractController implements ControllerInterface
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $confirmPassword = filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            // Si les filtres passent//
+            // Si filtres OK
             if ($nickname && $email && $password) {
                 $UserManager = new UserManager();
 
-                // Si le mail n'existe pas //
+                // Si le mail n'existe pas 
                 if (!$UserManager->findOneByEmail($email)) {
-                    //Si le pseudo n'existe pas //
+                    //Si le pseudo n'existe pas 
                     if (!$UserManager->findOneByUser($nickname)) {
-                        //Si les 2 mots de passe concordent et que le mot de passe à un longueur supérieure ou égale à 8
-                        if (($password == $confirmPassword) and strlen($password) >= 8) {
+                        //Si les 2 mots de passe corespondent et que longueur supérieure ou égale à 12
+                        if (($password == $confirmPassword) and strlen($password) >= 12) {
                             //hashage du mot de passe
                             $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                            //ajout en base de données
+                            //ajout en BDD
                             $UserManager->add(["nickname" => $nickname, "email" => $email, "password" => $passwordHash]);
 
                             $this->redirectTo("security", "login");
-
-                            // Si les passwords correspondent
                         }
-                        //Si les passwords ne correspondent pas
-
                     }
-                } // fin submit
+                }
             }
         }
         return [
