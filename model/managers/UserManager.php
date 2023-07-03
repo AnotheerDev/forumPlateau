@@ -18,7 +18,8 @@ class UserManager extends Manager
 
     public function getUserById($id)
     {
-        $sql = "SELECT id_user
+        // $sql = "SELECT id_user (avant commit)
+        $sql = "SELECT id_user, nickname, email, role, registerDate
                 FROM " . $this->tableName . "
                 WHERE id_user = :id";
 
