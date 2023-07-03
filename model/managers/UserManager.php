@@ -15,6 +15,7 @@ class UserManager extends Manager
         parent::connect();
     }
 
+
     public function getUserById($id)
     {
         $sql = "SELECT id_user
@@ -25,5 +26,27 @@ class UserManager extends Manager
             DAO::select($sql, ['id' => $id]),
             $this->className
         );
+    }
+
+
+    public function findOneByEmail($email){
+        $sql = "SELECT *
+        FROM ".$this->tableName." a
+        WHERE email = :email";
+
+        return $this->getOneorNullResult(
+            DAO::select($sql, ['email' => $email],false),
+            $this->className);
+    }
+
+    
+    public function findOneByUser($nickname){
+        $sql = "SELECT *
+        FROM ".$this->tableName." a
+        WHERE nickname = :nickname";
+
+        return $this->getOneorNullResult(
+            DAO::select($sql, ['nickname' => $nickname],false),
+            $this->className);
     }
 }
