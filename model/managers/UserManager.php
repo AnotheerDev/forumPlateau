@@ -29,24 +29,39 @@ class UserManager extends Manager
     }
 
 
-    public function findOneByEmail($email){
+    public function findOneByEmail($email)
+    {
         $sql = "SELECT *
-        FROM ".$this->tableName." a
+        FROM " . $this->tableName . " a
         WHERE email = :email";
 
         return $this->getOneorNullResult(
-            DAO::select($sql, ['email' => $email],false),
-            $this->className);
+            DAO::select($sql, ['email' => $email], false),
+            $this->className
+        );
     }
 
-    
-    public function findOneByUser($nickname){
+
+    public function findOneByUser($nickname)
+    {
         $sql = "SELECT *
-        FROM ".$this->tableName." a
+        FROM " . $this->tableName . " a
         WHERE nickname = :nickname";
 
         return $this->getOneorNullResult(
-            DAO::select($sql, ['nickname' => $nickname],false),
-            $this->className);
+            DAO::select($sql, ['nickname' => $nickname], false),
+            $this->className
+        );
+    }
+
+    public function retrievePassword($email)
+    {
+        $sql = "SELECT password
+        FROM " . $this->tableName . "
+        WHERE email = :email";
+        return $this->getSingleScalarResult(
+            DAO::select($sql, ['email' => $email], false),
+            $this->className
+        );
     }
 }
