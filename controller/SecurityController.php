@@ -96,4 +96,30 @@ class HomeController extends AbstractController implements ControllerInterface
             "data" => []
         ];
     }
+
+
+    public function viewProfile($id)
+    {
+        $userManager = new UserManager();
+        // Récupérer l'utilisateur à partir de l'identifiant
+        $user = $userManager->getUserById($id);
+
+        // Vérifier si l'utilisateur existe
+        if ($user) {
+            var_dump($user);
+            die;
+            // Retourner le chemin du fichier de vue et les données utilisateur
+            return [
+                "view" => VIEW_DIR . "security/viewProfile.php",
+                "data" => ["user" => $user]
+            ];
+        } else {
+            // Gérer le cas où l'utilisateur n'existe pas
+            // Par exemple, rediriger vers une page d'erreur ou afficher un message approprié
+            return [
+                "view" => VIEW_DIR . "security/login.php",
+                "data" => []
+            ];
+        }
+    }
 }
