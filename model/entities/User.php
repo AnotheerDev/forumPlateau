@@ -4,6 +4,8 @@ namespace Model\Entities;
 
 use App\Entity;
 use DateTime;
+use Model\Managers\UserManager;
+
 
 final class User extends Entity
 {
@@ -90,5 +92,14 @@ final class User extends Entity
     public function setRegisterDate($registerDate)
     {
         $this->registerDate = $registerDate;
+    }
+
+
+    public function hasRole($role)
+    {
+        if ($role == $this->role) {
+            return true;
+        }
+        return false;
     }
 }
