@@ -12,11 +12,12 @@ use Model\Managers\CategoryManager;
 
 class HomeController extends AbstractController implements ControllerInterface
 {
+
     public function register()
     {
         $UserManager = new UserManager();
 
-        if (isset($_POST['submitRegister'])) {
+        if (isset($_POST['submitRegisteration'])) {
             $nickname = filter_input(INPUT_POST, 'nickname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -33,10 +34,9 @@ class HomeController extends AbstractController implements ControllerInterface
                         //Si les 2 mots de passe corespondent et que longueur supérieure ou égale à 12
                         if (($password == $confirmPassword) and strlen($password) >= 12) {
                             //hashage du mot de passe
-                            $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+                            $passwordHash = self::getPasswordHash($password);
                             //ajout en BDD
                             $UserManager->add(["nickname" => $nickname, "email" => $email, "password" => $passwordHash]);
-
                             $this->redirectTo("security", "login");
                         }
                     }
@@ -45,6 +45,54 @@ class HomeController extends AbstractController implements ControllerInterface
         }
         return [
             "view" => VIEW_DIR . "security/register.php",
+            "data" => []
+        ];
+    }
+
+
+    public function login()
+    {
+        $UserManager = new UserManager();
+
+        if (isset($_POST['submitLogin'])) {
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($email && $password) {
+                $dbUser = $UserManager->findOneByEmail($email);
+
+                if ($dbUser && password_verify($password, $dbUser->getPassword())) {
+                    // Le mot de passe est correct, effectuez les actions appropriées
+                    Session::setUser($dbUser);
+                    $this->redirectTo('forum', 'listCategories');
+                } else {
+                    // Le mot de passe est incorrect
+                    $this->redirectTo('security', 'login');
+                }
+            }
+        }
+
+        return [
+            "view" => VIEW_DIR . "security/login.php",
+            "data" => []
+        ];
+    }
+
+
+    private static function getPasswordHash($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+
+    public function logout()
+    {
+        $user = null;
+        Session::setUser($user);
+
+        //affichage dans ma views
+        return [
+            "view" => VIEW_DIR . "security/login.php",
             "data" => []
         ];
     }
