@@ -16,7 +16,7 @@ $posts = $result["data"]["posts"];
                     <p>Créé par : <?= $post->getUser()->getId() ?> - <?= $post->getUser()->getNickname() ?></p>
                     <p>Créé le <?= $post->getDateCreation() ?></p>
                     <p><?= $post->getContent() ?></p>
-                    <?php if ((App\Session::getUser() && App\Session::getUser() == $post->getUser())) : ?>
+                    <?php if ((App\Session::getUser() && App\Session::getUser() == $post->getUser() || App\Session::isAdmin())) : ?>
                         <a href="index.php?ctrl=forum&action=deletePost&id=<?= $post->getId() ?>" class="delete-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?')">Supprimer</a>
                         <a href="index.php?ctrl=forum&action=updatePost&id=<?= $post->getId() ?>" class="update-button">Modifier</a>
                     <?php endif; ?>
