@@ -35,17 +35,12 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="index.php?ctrl=home&action=home">Accueil</a>
-                                    <?php
-                                    if (App\Session::isAdmin()) {
-                                    ?>
-                                        <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
-                                    <?php
-                                    }
-                                    ?>
                                     <a class="dropdown-item" href="index.php?ctrl=forum&action=listCategories">la liste des catégories</a>
                                     <a class="dropdown-item" href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <?php if (App\Session::isAdmin()) : ?>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="index.php?ctrl=security&action=dashboard">Something else here</a>
+                                    <?php endif; ?>
                                 </div>
                             </li>
                         </ul>
