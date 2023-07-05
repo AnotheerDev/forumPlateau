@@ -187,4 +187,26 @@ class ForumController extends AbstractController implements ControllerInterface
             ]
         ];
     }
+
+
+    public function changeStatusTopic($id)
+    {
+        $topicManager = new TopicManager;
+        $topic = $topicManager->findOneById($id);
+        if ($topic->getLocked() == 0) {
+            $topicManager->lockTopic($id);
+        } else {
+            $topicManager->unlockTopic($id);
+        }
+        $this->redirectTo("forum", "listTopicsByCat", $topic->getCategory()->getId());
+    }
+
+    public function deleteTopic($id)
+    {
+        $topicManager= new TopicManager;
+        $topic = $topicManager->findOneById($id);
+
+        $topicManager->delete($id);
+        $this->redirectTo("forum", "listTopicsByCat", $topic->getCategory()->getId());
+    }
 }
