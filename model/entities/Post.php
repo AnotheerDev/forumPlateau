@@ -43,13 +43,15 @@ final class Post extends Entity
 
     public function getDateCreation()
     {
-        return $this->dateCreation;
+        $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s");
+        return $formattedDate;
     }
 
 
     public function setDateCreation($dateCreation)
     {
-        $this->dateCreation = $dateCreation;
+        $this->dateCreation = new \DateTime($dateCreation);
+        return $this;
     }
 
 
