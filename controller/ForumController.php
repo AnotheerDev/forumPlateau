@@ -115,6 +115,7 @@ class ForumController extends AbstractController implements ControllerInterface
                 }
 
                 header("Location:index.php?ctrl=forum&action=listTopicsByCat&id=$id");
+                exit;
             }
         }
     }
