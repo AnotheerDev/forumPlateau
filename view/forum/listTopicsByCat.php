@@ -30,19 +30,22 @@ $topics = $result["data"]['topics'];
         ?>
     </div>
 
-    <div>
-        <div class="new-topic-form">
-            <h2>Ajouter un nouveau topic</h2>
+    <?php if (App\Session::getUser()) : ?>
+        <div>
+            <div class="new-topic-form">
+                <h2>Ajouter un nouveau topic</h2>
 
-            <form action="index.php?ctrl=forum&action=addTopic&id=<?= $category->getId() ?>" method="POST">
-                <label for="title">Titre du topic :</label>
-                <input type="text" name="title" id="title" placeholder="Entrez le titre du topic" required>
+                <form action="index.php?ctrl=forum&action=addTopic&id=<?= $category->getId() ?>" method="POST">
+                    <label for="title">Titre du topic :</label>
+                    <input type="text" name="title" id="title" placeholder="Entrez le titre du topic" required>
 
-                <label for="post">Message :</label>
-                <textarea name="post" id="post" rows="4" placeholder="Entrez votre message" required></textarea>
+                    <label for="post">Message :</label>
+                    <textarea name="post" id="post" rows="4" placeholder="Entrez votre message" required></textarea>
 
-                <input type="submit" name="submit" value="Ajouter">
-            </form>
+                    <input type="submit" name="submit" value="Ajouter">
+                </form>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
+
 </div>
