@@ -34,4 +34,9 @@ class TopicManager extends Manager
         );
     }
 
+
+    public function deleteTopic($id)
+    {
+        $this->delete($id);
+    }
 }
