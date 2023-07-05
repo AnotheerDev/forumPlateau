@@ -22,6 +22,7 @@ class HomeController extends AbstractController implements ControllerInterface
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $confirmPassword = filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $role = "ROLE_MEMBER";
 
             // Si filtres OK
             if ($nickname && $email && $password) {
@@ -36,7 +37,7 @@ class HomeController extends AbstractController implements ControllerInterface
                             //hashage du mot de passe
                             $passwordHash = self::getPasswordHash($password);
                             //ajout en BDD
-                            $UserManager->add(["nickname" => $nickname, "email" => $email, "password" => $passwordHash]);
+                            $UserManager->add(["nickname" => $nickname, "email" => $email, "password" => $passwordHash, "role" => $role]);
                             $this->redirectTo("security", "login");
                         }
                     }
@@ -121,5 +122,13 @@ class HomeController extends AbstractController implements ControllerInterface
                 "data" => []
             ];
         }
+    }
+
+    public function dashboard()
+    {
+        return [
+            "view" => VIEW_DIR . "security/dashboard.php",
+            "data" => []
+        ];
     }
 }
