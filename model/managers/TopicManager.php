@@ -37,6 +37,27 @@ class TopicManager extends Manager
 
     public function deleteTopic($id)
     {
-        $this->delete($id);
+        $sql = "DELETE FROM " . $this->tableName . "
+                WHERE id_" . $this->tableName . " = :id";
+
+        DAO::delete($sql, ['id' => $id]);
+    }
+
+
+    public function lockTopic($id)
+    {
+        $sql = "UPDATE " . $this->tableName . " t
+                SET t.locked = 1 
+                WHERE t.id_" . $this->tableName . " = :id";
+        return DAO::update($sql, ['id' => $id]);
+    }
+
+
+    public function unlockTopic($id)
+    {
+        $sql = "UPDATE " . $this->tableName . " t
+                SET t.locked = 0 
+                WHERE t.id_" . $this->tableName . " = :id";
+        return DAO::update($sql, ['id' => $id]);
     }
 }
